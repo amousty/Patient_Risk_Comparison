@@ -30,14 +30,28 @@ $( document ).ready(function() {
 function parsingData(){
   $.getJSON( "data/MOCK_DATA.JSON", function( data ) {
     var items = [];
-    items.push( "<h1>" + "User" + "</h1>" );
+    var dangerosityAlert = "";
     $.each( data, function( id, val ) {
-      items.push( "<li id='" + id + "' class='list-group-item'>" + val.admin.nom + " " + val.admin.prenom + "</li>" );
+      items.push("<tr id='" + id + "' class='" + getDangerosity(val.biometrie.poids, 65, 80, 90) + "'>");
+        items.push("<td>" + val.admin.nom + "</td>" );
+        items.push("<td>" + val.admin.prenom + "</td>" );
+      items.push("</tr>");
     });
 
-    $( "<ul/>", {
-      "class": "list-group",
+    $( "<table/>", {
+      "class": "table",
       html: items.join( "" )
-    }).appendTo( "body" );
+    }).appendTo( "#body-content" );
   });
+}
+
+function getDangerosity(valueToCheck, okValue, warningValue, alertValue){
+  var dangerosityAlert = "table-danger";
+  if(valueToCheck <= okValue){
+    dangerosityAlert = "table-success";
+  }
+  else if (valueToCheck > okValue && valueToCheck <= warningValue){
+    dangerosityAlert = "table-warning";
+  }
+  return dangerosityAlert
 }
