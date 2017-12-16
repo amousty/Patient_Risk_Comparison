@@ -18,7 +18,7 @@ $( document ).ready(function() {
       * taille
   - const_biologique
       * HbA1c
-      * cholesterol_total
+      * Cholesterol_total
       * Cholesterol_HDL
   - parametres
       * PSS
