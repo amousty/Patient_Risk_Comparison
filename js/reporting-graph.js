@@ -1,43 +1,74 @@
+/*
+  Global variables
+*/
 var TABCOMPARATEDVALUE = ["Age", "BMI", "HbA1c (ratio)", "Total cholesterol (mg/dl)", "HDL cholesterol (mg/dl)", "Systolic blood pressure (mmHg)", "Smoking consumption (packs/year)"];
-// #TODO: DELETE THIS SHIT AFTER TEST
-var TABUSRID = [1,53];
-var OBJ_USERS = [];
+// #TODO: DELETE THIS -> AFTER TEST
+var TABUSRID = [
+  Math.floor((Math.random() * 500) + 1),
+  Math.floor((Math.random() * 500) + 1),
+  Math.floor((Math.random() * 500) + 1),
+  Math.floor((Math.random() * 500) + 1),
+  Math.floor((Math.random() * 500) + 1)
+];
 
-var color = Chart.helpers.color;
+var OBJ_USERS = []; // Variable containing user data
+var TAB_COLOR = ["e62739", "FDB45C", "b56969", "46BFBD"]; // 4 possible colours
 var barChartData = "";
 
-/*  DCUMENT READY */
+/*
+    DOCUMENT READY
+*/
 $( document ).ready( function() {
+    // We pass the IDs chosen by the doctor
     generateFullChartFromJSON(TABUSRID);
 });
 
-/* JSON RELATED FUNCTIONS */
+/*
+  GRAPH GENERATION RELATED FUNCTIONS
+*/
+
+/*
+  NAME : generateFullChartFromJSON
+  ROLE :
+    - Retrieve data from JSON
+    - fill the array of selected users
+    - call generateChartData
+  PARAM :
+    - tabIdUSer : array of user ids
+  RETURN : /
+*/
 function generateFullChartFromJSON(tabIdUSer){
-  // 1. Variables
-  var indexUsr = 0;
-  // 2. Search if given user exist in json file
+  // 1. Search if given user exist in json file
   $.getJSON( "data/MOCK_DATA.JSON", function( data ) {
-    for(indexUsr = 0; indexUsr < tabIdUSer.length; indexUsr++){
+    for(var indexUsr = 0; indexUsr < tabIdUSer.length && indexUsr < 4; indexUsr++){
       $.each( data, function( index, value ) {
         if(tabIdUSer[indexUsr] == value.id){
-          // Return found user as object, increment array of users
+          // 2. Return found user as object, increment array of users
           OBJ_USERS[indexUsr] = generateSingleUserData(value);
         }
       });
-      // Fill data to the chart
+      // 3. Fill data to the chart
       generateChartData();
     }
   });
 }
 
+/*
+  NAME : generateSingleUserData
+  ROLE : Return an user in the form of an object
+  PARAM :
+    - singleUserData : JSON line of selected patient
+  RETURN : the user object
+*/
 function generateSingleUserData(singleUserData){
+  // User : object containing useful information about patient
   /*"Age", "BMI", "HbA1c (ratio)", "Total cholesterol (mg/dl)", "HDL cholesterol (mg/dl)", "Systolic blood pressure (mmHg)", "Smoking consumption (packs/year)"*/
   var user = [];
   user.id = singleUserData.id;
   user.fullname  = singleUserData.admin.nom.toUpperCase() + " " + singleUserData.admin.prenom;
   user.age = getAge(singleUserData.admin.date_de_naissance);
   user.bmi = getBmi(singleUserData.biometrie.poids, singleUserData.biometrie.taille);
-  user.HbA1c = singleUserData.const_biologique.HbA1c;
+  user.HbA1c = ratioToPercent(singleUserData.const_biologique.HbA1c); // a ratio is requested
   user.Cholesterol_total = singleUserData.const_biologique.Cholesterol_total;
   user.Cholesterol_HDL = singleUserData.const_biologique.Cholesterol_HDL;
   user.PSS = singleUserData.parametres.PSS;
@@ -45,24 +76,32 @@ function generateSingleUserData(singleUserData){
   return user;
 }
 
-/* CHART GENERATION DATA RELATED FUNCTION */
+/*
+  NAME : generateChartData
+  ROLE :
+    - Generate shared data related to the chart
+    - Generate dataset for each patient
+    - Call generateChart
+  PARAM : /
+  RETURN : /
+*/
 function generateChartData(){
   barChartData = {
       labels: TABCOMPARATEDVALUE,
-      datasets : []
+      datasets : [] // will be filled after
   }; // End barchardata
 
   // DATA GENERATION
   for(var i = 0; i < OBJ_USERS.length; i++){
       var myNewDataset = {
         label : OBJ_USERS[i].fullname,
-        backgroundColor : color(window.chartColors.red).alpha(0.5).rgbString(),
-        borderColor : window.chartColors.blue,
+        backgroundColor : hexToRgb(TAB_COLOR[i], 0.5),
+        borderColor : hexToRgb(TAB_COLOR[i], 1),
         borderWidth : 1 ,
         data : [
-          OBJ_USERS[i].age ,
-          OBJ_USERS[i].bmi ,
-          OBJ_USERS[i].HbA1c ,
+          OBJ_USERS[i].age , // calculated data
+          OBJ_USERS[i].bmi , // calculated data
+          OBJ_USERS[i].HbA1c, // calculated data
           OBJ_USERS[i].Cholesterol_total ,
           OBJ_USERS[i].Cholesterol_HDL ,
           OBJ_USERS[i].PSS ,
@@ -70,19 +109,26 @@ function generateChartData(){
         ]
       }
       barChartData.datasets.push(myNewDataset);
-      //myBarChart.chart.config.data.datasets.push({ myNewDataset });
   }
-  //window.myBarChart.update();
   generateChart();
 }
 
+/*
+  NAME : generateChart
+  ROLE :
+    - Draw the chart with selected options
+  PARAM : /
+  RETURN : /
+*/
 function generateChart(){
   var ctx = $("#canvas")[0].getContext("2d");
   window.myBarChart = new Chart(ctx, {
-      type: 'bar',
+      type: 'bar', // Bar, Line and Radar are great
       data: barChartData,
       options: {
           responsive: true,
+          barValueSpacing: 20,
+          events: ['click'], // In order to avoid mousover bug
           legend: {
               position: 'top',
           },
@@ -92,20 +138,4 @@ function generateChart(){
           }
       }
   });
-}
-/* HELPERS #TODO : DEPLACE THIS TO HELPER.JS*/
-/* https://stackoverflow.com/questions/4060004/calculate-age-given-the-birth-date-in-the-format-yyyymmdd */
-function getAge(dateString) {
-    var today = new Date();
-    var birthDate = new Date(dateString);
-    var age = today.getFullYear() - birthDate.getFullYear();
-    var m = today.getMonth() - birthDate.getMonth();
-    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
-        age--;
-    }
-    return age;
-}
-
-function getBmi(weight, height){
-  return weight / (height * height);
 }
