@@ -7,6 +7,7 @@
         <!-- CSS inserts -->
         <link type="text/css" rel="stylesheet"  href="css/bootstrap/bootstrap.min.css">
         <link type="text/css" rel="stylesheet"  href="css/font-awesome/font-awesome.css">
+        <link type="text/css" rel="stylesheet"  href="css/datatables/datatables.css">
         <link type="text/css" rel="stylesheet"  href="css/default.css">
         <link type="text/css" rel="stylesheet"  href="css/reporting-tool.css">
 
@@ -15,20 +16,50 @@
         <!-- https://github.com/FezVrasta/popper.js/blob/master/docs/_includes/popper-documentation.md -->
         <script type="text/javascript" src="js/bootstrap/bootstrap.bundle.min.js"></script>
         <script type="text/javascript" src="js/bootstrap/bootstrap.min.js"></script>
+        <script type="text/javascript" src="js/datatables/datatables.min.js"></script>
 
         <script type="text/javascript" src="js/chart/chart.bundle.min.js"></script>
         <script type="text/javascript" src="js/chart/chart.min.js"></script>
         <script type="text/javascript" src="js/helper.js"></script>
         <script type="text/javascript" src="js/reporting-graph.js"></script>
-
+        <script type="text/javascript" src="js/datatable.js"></script>
         <!-- Page header -->
         <meta charset="utf-8" />
         <title>Risk Viewer</title>
     </head>
-
     <body>
-    <div class="col-lg-12 x-auto" id="container">
-        <canvas id="canvas"></canvas>
-    </div>
-</body>
+      <!-- TABLES ZONE -->
+      <div class="x-auto">
+        <!-- DATA TABLE -->
+      <table id="tblData" class="table-hover col-lg-10 table-responsive">
+          <thead class="thead-inverse">
+            <tr>
+              <th class='text-center'>First Name</th>
+              <th class='text-center'>Last Name</th>
+              <th class='text-center'>Birthdate</th>
+              <th class='text-center'>Gender</th>
+              <th class='text-center'>BMI</th>
+              <th class='text-center'>hbA1c</th>
+              <th class='text-center'>Chol. Tot.</th>
+              <th class='text-center'>Chol. HDL</th>
+              <th class='text-center'>PSS</th>
+              <th class='text-center'>Cig./year</th>
+            </tr>
+          </thead>
+        </table>
+        <!-- SELECTED PATIENT TABLE -->
+        <table id="tblSelectedPatient" class="table-hover col-lg-10 x-auto">
+
+        </table>
+      </div>
+      <!-- MODAL ZONE -->
+
+
+      <!-- CHART ZONE -->
+      <div class="col-lg-12 x-auto invisible" id="container">
+          <canvas id="canvas">
+            <!-- CHART GENERATION -->
+          </canvas>
+      </div>
+    </body>
 </html>

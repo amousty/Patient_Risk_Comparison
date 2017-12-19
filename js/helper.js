@@ -26,7 +26,8 @@ function getAge(dateString) {
 */
 function getBmi(weight, height){
   // Height divided by 100 because formula is based on meters and no cm
-  return weight / ((height/100) * (height/100));
+  // Round at 2 number after comma
+  return (weight / ((height/100) * (height/100))).toFixed(2);
 }
 
 /*
@@ -54,7 +55,7 @@ function hexToRgb(hex, opacity) {
 */
 function ratioToPercent(ratio){
   // If the value is > 100 -> it's not a correct value in parameter
-  return ratio * 100 < 100 ? ratio * 100 : ratio;
+  return ratio * 100 < 100 ? (ratio * 100).toFixed(2) : ratio;
 }
 
 /*
