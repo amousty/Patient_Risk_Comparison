@@ -44,7 +44,11 @@ function loadTableData(){
       });
 
 
-      $( "#tblData" ).append(items.join( "" ));
+      $( "#tbodyData" ).append(items.join( "" ));
+      //$('#tblData').DataTable();
+      $('#tblData').DataTable( {
+        "order": [[ 3, "desc" ]]
+    } );
     });
 
 }
