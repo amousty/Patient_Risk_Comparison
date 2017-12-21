@@ -13,6 +13,7 @@
         <!-- Custom CSS -->
         <link type="text/css" rel="stylesheet"  href="css/default.css">
         <link type="text/css" rel="stylesheet"  href="css/reporting-tool.css">
+        <link type="text/css" rel="stylesheet"  href="css/spinner.css">
 
         <!-- Javascript inserts -->
         <!-- Libraries -->
@@ -27,56 +28,71 @@
         <script type="text/javascript" src="js/helper.js"></script>
         <script type="text/javascript" src="js/reporting-graph.js"></script>
         <script type="text/javascript" src="js/datatable.js"></script>
+        <script type="text/javascript" src="js/start.js"></script>
 
         <meta charset="utf-8" />
         <title>Risk Viewer</title>
     </head>
     <body>
+      <div id="loader"></div>
 
-      <!-- CHART ZONE -->
-
-      <div class="col-lg-10 x-auto"  id="container">
-          <canvas id="canvas">
-            <!-- CHART GENERATION -->
-          </canvas>
-      </div>
+      <header>
+        <div class="container inner">
+          Reporting tool GHDC
+        </div>
+      </header>
 
       <!-- TABLES ZONE -->
-      <div class="col-lg-10 offset-lg-1">
-        <!-- DATA TABLE -->
-      <table id="tblData" class="table-hover display">
-          <thead class="thead-inverse">
-            <tr>
-              <th class='text-center'>First Name</th>
-              <th class='text-center'>Last Name</th>
-              <th class='text-center'>Birthdate</th>
-              <th class='text-center'>Gender</th>
-              <th class='text-center'>BMI</th>
-              <th class='text-center'>hbA1c</th>
-              <th class='text-center'>Chol. Tot.</th>
-              <th class='text-center'>Chol. HDL</th>
-              <th class='text-center'>PSS</th>
-              <th class='text-center'>Cig./year</th>
-            </tr>
-          </thead>
-          <tfoot>
-						<tr>
-              <th class='text-center'>First Name</th>
-              <th class='text-center'>Last Name</th>
-              <th class='text-center'>Birthdate</th>
-              <th class='text-center'>Gender</th>
-              <th class='text-center'>BMI</th>
-              <th class='text-center'>hbA1c</th>
-              <th class='text-center'>Chol. Tot.</th>
-              <th class='text-center'>Chol. HDL</th>
-              <th class='text-center'>PSS</th>
-              <th class='text-center'>Cig./year</th>
-						</tr>
-					</tfoot>
-          <tbody id="tbodyData">
+      <div class="col-lg-10 offset-lg-1" id="data-container">
+        <table id="tblData" class="table-hover display">
+            <thead class="thead-inverse">
+              <tr>
+                <th class='text-center'>First Name</th>
+                <th class='text-center'>Last Name</th>
+                <th class='text-center'>Birthdate</th>
+                <th class='text-center'>Gender</th>
+                <th class='text-center'>BMI</th>
+                <th class='text-center'>hbA1c</th>
+                <th class='text-center'>Chol. Tot.</th>
+                <th class='text-center'>Chol. HDL</th>
+                <th class='text-center'>PSS</th>
+                <th class='text-center'>Cig./year</th>
+              </tr>
+            </thead>
+            <tfoot>
+  						<tr>
+                <th class='text-center'>First Name</th>
+                <th class='text-center'>Last Name</th>
+                <th class='text-center'>Birthdate</th>
+                <th class='text-center'>Gender</th>
+                <th class='text-center'>BMI</th>
+                <th class='text-center'>hbA1c</th>
+                <th class='text-center'>Chol. Tot.</th>
+                <th class='text-center'>Chol. HDL</th>
+                <th class='text-center'>PSS</th>
+                <th class='text-center'>Cig./year</th>
+  						</tr>
+  					</tfoot>
+            <tbody id="tbodyData">
 
-          </tbody>
-        </table>
+            </tbody>
+          </table>
+
+          <!-- CHART ZONE -->
+          <div  id="graph-container">
+              <canvas id="results-graph">
+                <!-- CHART GENERATION -->
+              </canvas>
+          </div>
+        </div> <!--End data-container -->
+
+        <div class="footer">
+          <div class="container">
+            <a href='#'><i class="fa fa-facebook fa-3x fa-fw"></i></a>
+            <a href='https://github.com/amousty'><i class="fa fa-github fa-3x fa-fw"></i></a>
+            <a href='https://www.linkedin.com/in/adrien-mousty-817519a3/'><i class="fa fa-linkedin fa-3x fa-fw"></i></a>
+          </div>
+        </div>
 
     </body>
 </html>

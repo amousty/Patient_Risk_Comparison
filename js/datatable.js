@@ -97,12 +97,3 @@ function splitParams(tblParams){
   }
   return res;
 }
-
-/* #TODO : remove the document ready and merge in shared js */
-/*
-    DOCUMENT READY
-*/
-$( document ).ready( function() {
-    // We pass the IDs chosen by the doctor
-    loadTableData();
-});

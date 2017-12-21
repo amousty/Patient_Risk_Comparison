@@ -46,17 +46,40 @@ var barChartData = "";
 function generateFullChartFromJSON(tabIdUSer, JSONObj){
   // 0. Clean the array
   OBJ_USERS = [];
-  // 1. Search if given user exist in json file
-  for(var indexUsr = 0; indexUsr < tabIdUSer.length && indexUsr < 4; indexUsr++){
-    $.each(JSONObj, function( index, value ) {
-      if(tabIdUSer[indexUsr] == value.id){
-        // 2. Return found user as object, increment array of users
-        OBJ_USERS[indexUsr] = generateSingleUserData(value);
-      }
-    });
-    // 3. Fill data to the chart
-    generateChartData();
+
+  // 1. Check if tabIdUser is empty
+  if(tabIdUSer.length != 0){
+    $('#graph-container').show("slow");
+    // Search if given user exist in json file
+    for(var indexUsr = 0; indexUsr < tabIdUSer.length && indexUsr < 4; indexUsr++){
+      $.each(JSONObj, function( index, value ) {
+        if(tabIdUSer[indexUsr] == value.id){
+          // 2. Return found user as object, increment array of users
+          OBJ_USERS[indexUsr] = generateSingleUserData(value);
+        }
+      });
+      // Fill data to the chart
+      generateChartData();
+    }
   }
+
+  else{
+    $('#graph-container').hide( "slow");
+    // If empty we destroy the element
+    destroyChartCanvas();
+  }
+}
+
+/*
+  NAME : destroyChartCanvas
+  ROLE : Return an user in the form of an object
+  PARAM :
+    - singleUserData : JSON line of selected patient
+  RETURN : the user object
+*/
+function destroyChartCanvas(){
+  $('#results-graph').remove(); // this is my <canvas> element
+  $('#graph-container').append('<canvas id="results-graph"><canvas>');
 }
 
 /*
@@ -127,7 +150,7 @@ function generateChartData(){
   RETURN : /
 */
 function generateChart(){
-  var ctx = $("#canvas")[0].getContext("2d");
+  var ctx = $("#results-graph")[0].getContext("2d");
   window.myBarChart = new Chart(ctx, {
       type: 'bar', // Bar, Line and Radar are great
       data: barChartData,
