@@ -3,57 +3,80 @@
     <head>
         <!-- icon -->
         <link rel='shortcut icon' type='image/x-icon' href='img/favicon.ico' />
-      
+
         <!-- CSS inserts -->
+        <!-- Libraries -->
         <link type="text/css" rel="stylesheet"  href="css/bootstrap/bootstrap.min.css">
         <link type="text/css" rel="stylesheet"  href="css/font-awesome/font-awesome.css">
+        <link type="text/css" rel="stylesheet"  href="css/datatables/datatables.min.css">
+
+        <!-- Custom CSS -->
         <link type="text/css" rel="stylesheet"  href="css/default.css">
+        <link type="text/css" rel="stylesheet"  href="css/reporting-tool.css">
 
         <!-- Javascript inserts -->
+        <!-- Libraries -->
         <script type="text/javascript" src="js/jquery/jquery-3.2.1.min.js"></script>
         <!-- https://github.com/FezVrasta/popper.js/blob/master/docs/_includes/popper-documentation.md -->
-        <script type="text/javascript" src="js/bootstrap/bootstrap.bundle.min.js"></script>
         <script type="text/javascript" src="js/bootstrap/bootstrap.min.js"></script>
-        <script type="text/javascript" src="js/dataProcessing.js"></script>
+        <!-- https://datatables.net -->
+        <script type="text/javascript" src="js/datatables/datatables.min.js"></script>
+        <script type="text/javascript" src="js/chart/chart.min.js"></script>
 
-        <!-- Page header -->
+        <!-- Custom JS -->
+        <script type="text/javascript" src="js/helper.js"></script>
+        <script type="text/javascript" src="js/reporting-graph.js"></script>
+        <script type="text/javascript" src="js/datatable.js"></script>
+
         <meta charset="utf-8" />
         <title>Risk Viewer</title>
     </head>
-
     <body>
-      <!--<header class="header-section">
-        <div class="container clearfix">
-          <div class="row">
-            <div class="col-sm-3">
-              <a href="index.html" class="navbar-brand logo">
-                <img src="img/logo.png" alt="" class="img-responsive">
-              </a>
-            </div>
-          </div>
-        </div>
-      </header>-->
 
-      <header>
-        <div class="container inner">
-          Reporting tool GHDC
-        </div>
-      </header>
-      <div class="container-fluid tabStrip">
-        <ul class="nav nav-tabs text-center">
-          <li class="col-sm-4 grey"><a href="index.html"><i class="fa fa-lightbulb-o fa-2x col-sm-12"></i><span class="col-sm-12">About</span></a></li>
-          <li class="col-sm-4 orange"><a href="user-profile.html"><i class="fa fa-users fa-2x col-sm-12"></i><span class="col-sm-12">User profile</span></a></li>
-          <li class="col-sm-4 blue"><a href="reporting-graph.html"><i class="fa fa-line-chart fa-2x col-sm-12"></i><span class="col-sm-12">Graphs</span></a></li>
-        </ul>
+      <!-- CHART ZONE -->
+
+      <div class="col-lg-10 x-auto"  id="container">
+          <canvas id="canvas">
+            <!-- CHART GENERATION -->
+          </canvas>
       </div>
 
-      <!--  -->
-      <div class="footer">
-        <div class="container">
-          <a href='#'><i class="fa fa-facebook fa-3x fa-fw"></i></a>
-          <a href='https://github.com/amousty'><i class="fa fa-github fa-3x fa-fw"></i></a>
-          <a href='https://www.linkedin.com/in/adrien-mousty-817519a3/'><i class="fa fa-linkedin fa-3x fa-fw"></i></a>
-        </div>
-      </div>
+      <!-- TABLES ZONE -->
+      <div class="col-lg-10 offset-lg-1">
+        <!-- DATA TABLE -->
+      <table id="tblData" class="table-hover display">
+          <thead class="thead-inverse">
+            <tr>
+              <th class='text-center'>First Name</th>
+              <th class='text-center'>Last Name</th>
+              <th class='text-center'>Birthdate</th>
+              <th class='text-center'>Gender</th>
+              <th class='text-center'>BMI</th>
+              <th class='text-center'>hbA1c</th>
+              <th class='text-center'>Chol. Tot.</th>
+              <th class='text-center'>Chol. HDL</th>
+              <th class='text-center'>PSS</th>
+              <th class='text-center'>Cig./year</th>
+            </tr>
+          </thead>
+          <tfoot>
+						<tr>
+              <th class='text-center'>First Name</th>
+              <th class='text-center'>Last Name</th>
+              <th class='text-center'>Birthdate</th>
+              <th class='text-center'>Gender</th>
+              <th class='text-center'>BMI</th>
+              <th class='text-center'>hbA1c</th>
+              <th class='text-center'>Chol. Tot.</th>
+              <th class='text-center'>Chol. HDL</th>
+              <th class='text-center'>PSS</th>
+              <th class='text-center'>Cig./year</th>
+						</tr>
+					</tfoot>
+          <tbody id="tbodyData">
+
+          </tbody>
+        </table>
+
     </body>
 </html>

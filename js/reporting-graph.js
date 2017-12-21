@@ -25,26 +25,9 @@
   Global variables
 */
 var TABCOMPARATEDVALUE = ["Age", "BMI", "HbA1c (ratio)", "Total cholesterol (mg/dl)", "HDL cholesterol (mg/dl)", "Systolic blood pressure (mmHg)", "Smoking consumption (packs/year)"];
-// #TODO: DELETE THIS -> AFTER TEST
-var TABUSRID = [
-  Math.floor((Math.random() * 500) + 1),
-  Math.floor((Math.random() * 500) + 1),
-  Math.floor((Math.random() * 500) + 1),
-  Math.floor((Math.random() * 500) + 1),
-  Math.floor((Math.random() * 500) + 1)
-];
-
 var OBJ_USERS = []; // Variable containing user data
 var TAB_COLOR = ["e62739", "FDB45C", "b56969", "46BFBD"]; // 4 possible colours
 var barChartData = "";
-
-/*
-    DOCUMENT READY
-*/
-$( document ).ready( function() {
-    // We pass the IDs chosen by the doctor
-    //generateFullChartFromJSON(TABUSRID);
-});
 
 /*
   GRAPH GENERATION RELATED FUNCTIONS
@@ -60,20 +43,20 @@ $( document ).ready( function() {
     - tabIdUSer : array of user ids
   RETURN : /
 */
-function generateFullChartFromJSON(tabIdUSer){
+function generateFullChartFromJSON(tabIdUSer, JSONObj){
+  // 0. Clean the array
+  OBJ_USERS = [];
   // 1. Search if given user exist in json file
-  $.getJSON( "data/MOCK_DATA.JSON", function( data ) {
-    for(var indexUsr = 0; indexUsr < tabIdUSer.length && indexUsr < 4; indexUsr++){
-      $.each( data, function( index, value ) {
-        if(tabIdUSer[indexUsr] == value.id){
-          // 2. Return found user as object, increment array of users
-          OBJ_USERS[indexUsr] = generateSingleUserData(value);
-        }
-      });
-      // 3. Fill data to the chart
-      generateChartData();
-    }
-  });
+  for(var indexUsr = 0; indexUsr < tabIdUSer.length && indexUsr < 4; indexUsr++){
+    $.each(JSONObj, function( index, value ) {
+      if(tabIdUSer[indexUsr] == value.id){
+        // 2. Return found user as object, increment array of users
+        OBJ_USERS[indexUsr] = generateSingleUserData(value);
+      }
+    });
+    // 3. Fill data to the chart
+    generateChartData();
+  }
 }
 
 /*

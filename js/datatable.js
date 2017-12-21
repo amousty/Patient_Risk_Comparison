@@ -1,8 +1,9 @@
 TAB_SELECTED_VALUES = [];
+var JSONObj =  "";
 
 function loadTableData(){
-
     $.getJSON( "data/MOCK_DATA.JSON", function( data ) {
+      JSONObj = data;
       var items = [];
       var dangerosityAlert = "";
       $.each( data, function( id, val ) {
@@ -25,17 +26,12 @@ function loadTableData(){
         ];
         items.push(
           addTr(
-            id,
+            val.id,
             values,
-            "", //getDangerosity(biom.poids, 65, 80, 90),
+            "",
             "selectValue",
             [
-              //"tblSelectedPatient",
-              id//,
-              //values,
-              //"",//getDangerosity(biom.poids, 65, 80, 90),
-              //"",
-              //""
+              val.id
             ]
           )
         );
@@ -55,24 +51,25 @@ function addValueToTable(target, id, values, cls, fct, params){
 }
 
 function selectValue(id){
-  if(TAB_SELECTED_VALUES.length < 4){
-    if ($('#' + id ).hasClass( "table-success" )){
-      $('#' + id).removeClass( "table-success" );
-      var index = TAB_SELECTED_VALUES.indexOf(id);
-      if (index > -1) {
-        TAB_SELECTED_VALUES.splice(index, 1);
-      }
-
+  if ($('#' + id ).hasClass( "table-success" )){
+    $('#' + id).removeClass( "table-success" );
+    var index = TAB_SELECTED_VALUES.indexOf(id);
+    if (index > -1) {
+      TAB_SELECTED_VALUES.splice(index, 1);
     }
-    else{
+  }
+  else{
+    if(TAB_SELECTED_VALUES.length < 4){
       $('#' + id).addClass( "table-success" );
       TAB_SELECTED_VALUES.push(id);
     }
-    generateFullChartFromJSON(TAB_SELECTED_VALUES);
+    else{
+      // #TODO : replace by modal who show current user selected
+      alert('Please selecte only 4 patients maxium !');
+    }
   }
-  else{
-    alert('4 patient maxium !');
-  }
+  // Call from reporting-graph.js
+  generateFullChartFromJSON(TAB_SELECTED_VALUES, JSONObj);
 }
 
 function addTr(id, values, cls, fct, params){
@@ -106,7 +103,6 @@ function splitParams(tblParams){
     DOCUMENT READY
 */
 $( document ).ready( function() {
-    $('#chart').hide();
     // We pass the IDs chosen by the doctor
     loadTableData();
 });
