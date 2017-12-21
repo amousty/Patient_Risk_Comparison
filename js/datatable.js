@@ -1,6 +1,16 @@
 TAB_SELECTED_VALUES = [];
 var JSONObj =  "";
 
+/*
+  NAME : loadTableData
+  ROLE :
+    - Read JSON DATA
+    - Put this object withtin a var
+    - Build table
+    -  Transform table in datatable
+  PARAM : /
+  RETURN : /
+*/
 function loadTableData(){
     $.getJSON( "data/MOCK_DATA.JSON", function( data ) {
       JSONObj = data;
@@ -42,12 +52,78 @@ function loadTableData(){
     });
 }
 
-function addValueToTable(target, id, values, cls, fct, params){
-  $( "#" + target ).append(
-    addTr(id, values, cls, fct, params)
-  );
+/*
+  NAME : addTr
+  ROLE :
+    - Build a TR from table
+    - Add it a function (with(out) param(s)) if requested
+    - Add it a class if requested
+  PARAM : /
+  RETURN : /
+*/
+function addTr(id, values, cls, fct, params){
+  var items = [];
+  var onclickbuilder = fct != "" ? "onclick=" + fct + "(" + splitParams(params) + ")>" : ">";
+  items.push("<tr id='" + id + "' class='" + cls + "'" + onclickbuilder);
+  $.each( values, function( id, val ){
+    items.push("<td class='text-center'>" + val + "</td>" );
+  });
+  items.push("</tr>");
+  return items;
 }
 
+/*
+  NAME : splitParams
+  ROLE : Receive a table, transform it in readable param
+  PARAM : table params [xxx, xxx, xxx]
+  RETURN : acceptable string "xxx, xxx, xxx"
+*/
+function splitParams(tblParams){
+  // Get an array
+  var res = ""
+  if(typeof tblParams !== "undefined"){
+    for(var i = 0; i < tblParams.length; i++){
+      if(tblParams[i] != "" && tblParams[i] != null){
+        res += "'" + tblParams[i]  + "',";
+      }
+    }
+    res = res.replace(/'/g, '"');
+    return res.substring(0, res.length - 1); // retrieve the latest ','
+  }
+  return res;
+}
+
+/*
+  NAME : getListOfSelectPatient
+  ROLE : Return the list of selected patient
+  PARAM : /
+  RETURN : The list of selected patient
+*/
+function getListOfSelectPatient(){
+  var list="<span>List of selected patients :<span>";
+
+  for(var i = 0; i < TAB_SELECTED_VALUES.length && i < 4; i++){
+    $.each(JSONObj, function( index, value ) {
+      if(TAB_SELECTED_VALUES[i] == value.id){
+        list += "<li>";
+        list += value.admin.nom.toUpperCase() + " " + value.admin.prenom
+        list += "</li>";
+      }
+    });
+  }
+  return list;
+}
+
+/*
+  NAME : selectValue
+  ROLE :
+    - Select or unselect a value from the datatable
+    - Check if we have not more than 4 patients selected
+    - Add class to selected patient
+    - Call generateFullChartFromJSON()
+  PARAM : /
+  RETURN : /
+*/
 function selectValue(id){
   if ($('#' + id ).hasClass( "table-success" )){
     $('#' + id).removeClass( "table-success" );
@@ -74,43 +150,15 @@ function selectValue(id){
   generateFullChartFromJSON(TAB_SELECTED_VALUES, JSONObj);
 }
 
-function addTr(id, values, cls, fct, params){
-  var items = [];
-  var onclickbuilder = fct != "" ? "onclick=" + fct + "(" + splitParams(params) + ")>" : ">";
-  items.push("<tr id='" + id + "' class='" + cls + "'" + onclickbuilder);
-  $.each( values, function( id, val ){
-    items.push("<td class='text-center'>" + val + "</td>" );
-  });
-  items.push("</tr>");
-  return items;
-}
 
-function splitParams(tblParams){
-  // Get an array
-  var res = ""
-  if(typeof tblParams !== "undefined"){
-    for(var i = 0; i < tblParams.length; i++){
-      if(tblParams[i] != "" && tblParams[i] != null){
-        res += "'" + tblParams[i]  + "',";
-      }
-    }
-    res = res.replace(/'/g, '"');
-    return res.substring(0, res.length - 1); // retrieve the latest ','
-  }
-  return res;
-}
-
-function getListOfSelectPatient(){
-  var list="<span>List of selected patients :<span>";
-
-  for(var i = 0; i < TAB_SELECTED_VALUES.length && i < 4; i++){
-    $.each(JSONObj, function( index, value ) {
-      if(TAB_SELECTED_VALUES[i] == value.id){
-        list += "<li>";
-        list += value.admin.nom.toUpperCase() + " " + value.admin.prenom
-        list += "</li>";
-      }
-    });
-  }
-  return list;
+/*
+  NAME : removePatient
+  ROLE : remove class from all selected patients
+  PARAM : /
+  RETURN : /
+*/
+function removePatient(){
+  $("#tbodyData tr").removeClass("table-success");
+  // But we also need to clean the array
+  TAB_SELECTED_VALUES = [];
 }

@@ -31,13 +31,22 @@ $( document ).ready( function() {
   $('#loader').show();
   $('#data-container').hide();
 
-  $('.smooth-scrolling').on('click', function() { // Au clic sur un élément
-			var page = $(this).attr('href'); // Page cible
-			var speed = 750; // Durée de l'animation (en ms)
-			$('html, body').animate( { scrollTop: $(page).offset().top }, speed ); // Go
+
+  $('.smooth-scrolling').on('click', function() {
+      // Target page
+			var page = $(this).attr('href');
+      // Length animation (ms)
+			var speed = 750;
+			$('html, body').animate( { scrollTop: $(page).offset().top }, speed );
 			return false;
 		});
+
+    $('#btn-rmv-patient').click(function(){
+      removePatient();
+    });
 });
+
+
 
 $( window ).on( "load", function() {
     $('#loader').hide();
