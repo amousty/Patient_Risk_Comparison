@@ -1,4 +1,27 @@
 /*
+  Data tree
+  ----------
+
+  - id
+  - admin
+      * prenom
+      * nom
+      * date_de_naissance
+      * genre
+  - biometrie
+      * poids
+      * taille
+  - const_biologique
+      * HbA1c
+      * Cholesterol_total
+      * Cholesterol_HDL
+  - parametres
+      * PSS
+  - assuetudes
+      * Consommation_tabagique
+*/
+
+/*
   Global variables
 */
 var TABCOMPARATEDVALUE = ["Age", "BMI", "HbA1c (ratio)", "Total cholesterol (mg/dl)", "HDL cholesterol (mg/dl)", "Systolic blood pressure (mmHg)", "Smoking consumption (packs/year)"];
@@ -20,7 +43,7 @@ var barChartData = "";
 */
 $( document ).ready( function() {
     // We pass the IDs chosen by the doctor
-    generateFullChartFromJSON(TABUSRID);
+    //generateFullChartFromJSON(TABUSRID);
 });
 
 /*
