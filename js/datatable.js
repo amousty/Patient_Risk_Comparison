@@ -100,8 +100,8 @@ function splitParams(tblParams){
   RETURN : The list of selected patient
 */
 function getListOfSelectPatient(){
-  var list="<span>List of selected patients :<span>";
-
+  var list ="<span>List of selected patients :<span>";
+  list += "<ul>";
   for(var i = 0; i < TAB_SELECTED_VALUES.length && i < 4; i++){
     $.each(JSONObj, function( index, value ) {
       if(TAB_SELECTED_VALUES[i] == value.id){
@@ -111,6 +111,7 @@ function getListOfSelectPatient(){
       }
     });
   }
+  list += "</ul>";
   return list;
 }
 
@@ -161,4 +162,7 @@ function removePatient(){
   $("#tbodyData tr").removeClass("table-success");
   // But we also need to clean the array
   TAB_SELECTED_VALUES = [];
+
+  // And also clean graph
+  destroyChartCanvas();
 }
