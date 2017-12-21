@@ -1,126 +1,154 @@
 /* VARIABLES */
 /* DOM */
-/* line 6, C:/Users/moust/Documents/GitHub/Patient_Risk_Comparison/css/scss/default.scss */
-html {
+/*html {
   position: relative;
   min-height: 100%;
 }
 
-/* line 11, C:/Users/moust/Documents/GitHub/Patient_Risk_Comparison/css/scss/default.scss */
 body {
   margin-bottom: 150px;
 }
 
-/* Header */
-/* line 16, C:/Users/moust/Documents/GitHub/Patient_Risk_Comparison/css/scss/default.scss */
+// Header 
 header {
   background: url(../img/medical-banner.jpg);
-  background-size: cover;
+  background-size:cover;
   width: 100%;
   height: 500px;
   background-color: #060;
   color: #fff;
   text-align: center;
-  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
-}
-
-/* line 28, C:/Users/moust/Documents/GitHub/Patient_Risk_Comparison/css/scss/default.scss */
-.inner {
-  padding: 30px;
-}
-
-/* line 32, C:/Users/moust/Documents/GitHub/Patient_Risk_Comparison/css/scss/default.scss */
-.masthead-nav > li {
-  display: inline-block;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, .5);
+}*/
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:300,400,700);
+/* line 29, C:/Users/moust/Documents/GitHub/Patient_Risk_Comparison/css/scss/default.scss */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Open Sans', sans-serif;
+  color: #333;
 }
 
 /* line 36, C:/Users/moust/Documents/GitHub/Patient_Risk_Comparison/css/scss/default.scss */
-.masthead-nav > li + li {
-  margin-left: 20px;
+header {
+  background: #111;
 }
 
 /* line 40, C:/Users/moust/Documents/GitHub/Patient_Risk_Comparison/css/scss/default.scss */
-.masthead-nav > li > a {
-  padding-right: 0;
-  padding-left: 0;
-  font-size: 16px;
-  font-weight: bold;
+.headline {
+  position: relative;
+  height: 400px;
   color: #fff;
-  /* IE8 proofing */
-  color: rgba(255, 255, 255, 0.95);
-  border-bottom: 2px solid transparent;
+  text-align: center;
+  background: url(../img/graphbanner.png) no-repeat center center;
+  background-size: cover;
 }
 
-/* line 51, C:/Users/moust/Documents/GitHub/Patient_Risk_Comparison/css/scss/default.scss */
-.masthead-nav > li > a:hover,
-.masthead-nav > li > a:focus {
-  background-color: transparent;
-  color: #fff;
-  border-bottom-color: #fff;
+/* line 47, C:/Users/moust/Documents/GitHub/Patient_Risk_Comparison/css/scss/default.scss */
+.headline:after {
+  position: absolute;
+  content: '';
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(17, 17, 17, 0.5);
 }
 
 /* line 58, C:/Users/moust/Documents/GitHub/Patient_Risk_Comparison/css/scss/default.scss */
-.masthead-nav > .active > a,
-.masthead-nav > .active > a:hover,
-.masthead-nav > .active > a:focus {
-  color: #fff;
-  border-bottom-color: #fff;
+.inner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  opacity: 0;
+  z-index: 10;
+  transform: translateX(-50%) translateY(-50%);
+  animation: fade-in 0.75s 0.25s ease-in forwards;
 }
 
-@media (min-width: 768px) {
-  /* line 66, C:/Users/moust/Documents/GitHub/Patient_Risk_Comparison/css/scss/default.scss */
-  .navbar-brand {
-    float: left;
-  }
-  /* line 69, C:/Users/moust/Documents/GitHub/Patient_Risk_Comparison/css/scss/default.scss */
-  .masthead-nav {
-    float: right;
-  }
+/* line 66, C:/Users/moust/Documents/GitHub/Patient_Risk_Comparison/css/scss/default.scss */
+.inner h1 {
+  margin: 0;
+  font-size: 4em;
+  line-height: 1.2em;
 }
 
-@media (max-width: 768px) {
-  /* line 75, C:/Users/moust/Documents/GitHub/Patient_Risk_Comparison/css/scss/default.scss */
-  .navbar-toggle {
-    background: #000 !important;
-  }
+/* line 71, C:/Users/moust/Documents/GitHub/Patient_Risk_Comparison/css/scss/default.scss */
+.inner p {
+  margin: 0;
+  font-size: 1.4em;
+  font-style: italic;
+  font-family: serif;
 }
 
-/* line 80, C:/Users/moust/Documents/GitHub/Patient_Risk_Comparison/css/scss/default.scss */
-.tabStrip {
-  background: #f3eee9;
-  border: none;
-  padding-left: 0;
-  padding-right: 0;
+/* line 79, C:/Users/moust/Documents/GitHub/Patient_Risk_Comparison/css/scss/default.scss */
+nav {
+  position: fixed;
+  width: 100%;
+  z-index: 10;
 }
 
-/* line 87, C:/Users/moust/Documents/GitHub/Patient_Risk_Comparison/css/scss/default.scss */
-.grey {
-  background: grey;
+/* line 83, C:/Users/moust/Documents/GitHub/Patient_Risk_Comparison/css/scss/default.scss */
+nav.scrolled {
+  background: rgba(17, 17, 17, 0.9);
 }
 
-/* line 91, C:/Users/moust/Documents/GitHub/Patient_Risk_Comparison/css/scss/default.scss */
-.blue {
-  background: #00BFFF;
+/* line 86, C:/Users/moust/Documents/GitHub/Patient_Risk_Comparison/css/scss/default.scss */
+nav ul {
+  float: right;
+  list-style: none;
+  padding: 25px;
+  margin: 0;
+}
+
+/* line 92, C:/Users/moust/Documents/GitHub/Patient_Risk_Comparison/css/scss/default.scss */
+nav li {
+  float: left;
 }
 
 /* line 95, C:/Users/moust/Documents/GitHub/Patient_Risk_Comparison/css/scss/default.scss */
-.orange {
-  background: #FF8C00;
-}
-
-/* line 99, C:/Users/moust/Documents/GitHub/Patient_Risk_Comparison/css/scss/default.scss */
-.tabStrip ul li a {
+nav a {
+  font-size: 0.9em;
   color: #fff;
+  text-decoration: none;
+  margin: 5px 0 0 20px;
+  display: block;
 }
 
-/* line 103, C:/Users/moust/Documents/GitHub/Patient_Risk_Comparison/css/scss/default.scss */
-.tabStrip ul li a:hover {
-  border: none;
-  background: none;
+/* line 101, C:/Users/moust/Documents/GitHub/Patient_Risk_Comparison/css/scss/default.scss */
+nav a:hover {
+  color: #ededed;
+}
+
+/* line 107, C:/Users/moust/Documents/GitHub/Patient_Risk_Comparison/css/scss/default.scss */
+.logo {
+  height: 75px;
+  float: left;
+  background: url(../img/logo.png);
+}
+
+/* line 113, C:/Users/moust/Documents/GitHub/Patient_Risk_Comparison/css/scss/default.scss */
+section {
+  width: 100%;
+  margin: 25px auto;
+  padding: 20px;
+  max-width: 800px;
+  font-size: 1.2em;
+  line-height: 1.6em;
+  box-sizing: border-box;
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 /* FOOTER */
-/* line 109, C:/Users/moust/Documents/GitHub/Patient_Risk_Comparison/css/scss/default.scss */
+/* line 133, C:/Users/moust/Documents/GitHub/Patient_Risk_Comparison/css/scss/default.scss */
 .footer {
   position: absolute;
   right: 0;
@@ -133,36 +161,36 @@ header {
   border-top: 5px solid #00ABC8;
 }
 
-/* line 121, C:/Users/moust/Documents/GitHub/Patient_Risk_Comparison/css/scss/default.scss */
+/* line 145, C:/Users/moust/Documents/GitHub/Patient_Risk_Comparison/css/scss/default.scss */
 .container {
   margin-top: 10px;
   color: #FFF;
   width: 100%;
 }
 
-/* line 127, C:/Users/moust/Documents/GitHub/Patient_Risk_Comparison/css/scss/default.scss */
+/* line 151, C:/Users/moust/Documents/GitHub/Patient_Risk_Comparison/css/scss/default.scss */
 .fa-github {
   color: #4099FF;
 }
 
-/* line 131, C:/Users/moust/Documents/GitHub/Patient_Risk_Comparison/css/scss/default.scss */
+/* line 155, C:/Users/moust/Documents/GitHub/Patient_Risk_Comparison/css/scss/default.scss */
 .fa-facebook {
   color: #3B5998;
 }
 
-/* line 135, C:/Users/moust/Documents/GitHub/Patient_Risk_Comparison/css/scss/default.scss */
+/* line 159, C:/Users/moust/Documents/GitHub/Patient_Risk_Comparison/css/scss/default.scss */
 .fa-linkedin {
   color: #007bb6;
 }
 
-/* line 139, C:/Users/moust/Documents/GitHub/Patient_Risk_Comparison/css/scss/default.scss */
+/* line 163, C:/Users/moust/Documents/GitHub/Patient_Risk_Comparison/css/scss/default.scss */
 .fa {
   opacity: 0.7;
   transition: 1s;
   -webkit-transition: 1s;
 }
 
-/* line 145, C:/Users/moust/Documents/GitHub/Patient_Risk_Comparison/css/scss/default.scss */
+/* line 169, C:/Users/moust/Documents/GitHub/Patient_Risk_Comparison/css/scss/default.scss */
 .fa:hover {
   opacity: 1;
   transition: 1s;

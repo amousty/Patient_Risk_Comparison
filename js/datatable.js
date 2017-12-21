@@ -37,11 +37,9 @@ function loadTableData(){
         );
       });
 
-
       $( "#tbodyData" ).append(items.join( "" ));
       $('#tblData').DataTable();
     });
-
 }
 
 function addValueToTable(target, id, values, cls, fct, params){
@@ -64,8 +62,12 @@ function selectValue(id){
       TAB_SELECTED_VALUES.push(id);
     }
     else{
-      // #TODO : replace by modal who show current user selected
-      alert('Please selecte only 4 patients maxium !');
+      // Clean previous list
+      $('#modalPatientList').empty();
+      // Build list
+      $('#modalPatientList').append(getListOfSelectPatient);
+      // Display modal
+      $('#alertModal').modal('show');
     }
   }
   // Call from reporting-graph.js
@@ -96,4 +98,19 @@ function splitParams(tblParams){
     return res.substring(0, res.length - 1); // retrieve the latest ','
   }
   return res;
+}
+
+function getListOfSelectPatient(){
+  var list="<span>List of selected patients :<span>";
+
+  for(var i = 0; i < TAB_SELECTED_VALUES.length && i < 4; i++){
+    $.each(JSONObj, function( index, value ) {
+      if(TAB_SELECTED_VALUES[i] == value.id){
+        list += "<li>";
+        list += value.admin.nom.toUpperCase() + " " + value.admin.prenom
+        list += "</li>";
+      }
+    });
+  }
+  return list;
 }

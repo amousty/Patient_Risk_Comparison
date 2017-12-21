@@ -12,14 +12,14 @@
 
         <!-- Custom CSS -->
         <link type="text/css" rel="stylesheet"  href="css/default.css">
-        <link type="text/css" rel="stylesheet"  href="css/reporting-tool.css">
+        <link type="text/css" rel="stylesheet"  href="css/data-tool.css">
         <link type="text/css" rel="stylesheet"  href="css/spinner.css">
 
         <!-- Javascript inserts -->
         <!-- Libraries -->
         <script type="text/javascript" src="js/jquery/jquery-3.2.1.min.js"></script>
         <!-- https://github.com/FezVrasta/popper.js/blob/master/docs/_includes/popper-documentation.md -->
-        <script type="text/javascript" src="js/bootstrap/bootstrap.min.js"></script>
+        <script type="text/javascript" src="js/bootstrap/bootstrap.bundle.min.js"></script>
         <!-- https://datatables.net -->
         <script type="text/javascript" src="js/datatables/datatables.min.js"></script>
         <script type="text/javascript" src="js/chart/chart.min.js"></script>
@@ -36,13 +36,26 @@
     <body>
       <div id="loader"></div>
 
+      <!-- HEADER -->
+      <nav class="">
+        <div class="logo"></div>
+        <ul>
+          <li><a class="smooth-scrolling" href="#tblData">Dataset <i class="fa fa-list" aria-hidden="true"></i></a></li>
+          <li><a class="smooth-scrolling" href="#graph-container">Chart <i class="fa fa-bar-chart" aria-hidden="true"></i></a></li>
+        </ul>
+      </nav>
+
       <header>
-        <div class="container inner">
-          Reporting tool GHDC
+        <div class="headline" style="opacity: 1;">
+          <div class="inner">
+            <h1 style="transform: translateY(0px);">Patient comparison</h1>
+            <p style="transform: translateY(0px);">View & compare your patient data very easily</p>
+          </div>
         </div>
       </header>
+      <!-- END HEADER -->
 
-      <!-- TABLES ZONE -->
+      <!-- DATA ZONE -->
       <div class="col-lg-10 offset-lg-1" id="data-container">
         <table id="tblData" class="table-hover display">
             <thead class="thead-inverse">
@@ -79,20 +92,51 @@
           </table>
 
           <!-- CHART ZONE -->
-          <div  id="graph-container">
+          <div id="graph-container">
               <canvas id="results-graph">
                 <!-- CHART GENERATION -->
               </canvas>
           </div>
         </div> <!--End data-container -->
+        <!-- END DATA ZONE -->
 
-        <div class="footer">
+        <!-- MODAL ZONE -->
+
+
+        <div class="modal fade" id="alertModal" tabindex="-1" role="dialog" aria-labelledby="alertModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="alertModalLabel">Warning <i class="fa fa-exclamation-circle" aria-hidden="true"></i></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body" id="alertModalContent">
+                You can only select <span>4</span> patients at the same time. </br>
+                Please, deslect patient to compare new one. </br> </br>
+                <div id="modalPatientList">
+                  <!-- Loaded dynamically by getListOfSelectPatient (datatable.js) -->
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">I get it</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- END MODAL ZONE -->
+
+        <!-- FOOTER -->
+        <div class="footer" style="display:none">
           <div class="container">
             <a href='#'><i class="fa fa-facebook fa-3x fa-fw"></i></a>
             <a href='https://github.com/amousty'><i class="fa fa-github fa-3x fa-fw"></i></a>
             <a href='https://www.linkedin.com/in/adrien-mousty-817519a3/'><i class="fa fa-linkedin fa-3x fa-fw"></i></a>
           </div>
         </div>
+        <!-- END FOOTER -->
 
     </body>
 </html>

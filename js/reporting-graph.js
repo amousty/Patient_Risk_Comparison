@@ -72,10 +72,9 @@ function generateFullChartFromJSON(tabIdUSer, JSONObj){
 
 /*
   NAME : destroyChartCanvas
-  ROLE : Return an user in the form of an object
-  PARAM :
-    - singleUserData : JSON line of selected patient
-  RETURN : the user object
+  ROLE : Clean the chart
+  PARAM : /
+  RETURN : /
 */
 function destroyChartCanvas(){
   $('#results-graph').remove(); // this is my <canvas> element

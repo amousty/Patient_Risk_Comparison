@@ -4,9 +4,12 @@ var $headline = $('.headline'),
     navHeight = 75;
 
 $(window).scroll(function() {
-  var scrollTop = $(this).scrollTop(),
-      headlineHeight = $headline.outerHeight() - navHeight,
-      navOffset = $nav.offset().top;
+  if ($nav.length) {
+    var scrollTop = $(this).scrollTop(),
+        headlineHeight = $headline.outerHeight() - navHeight,
+        navOffset = $nav.offset().top;
+  }
+
 
   $headline.css({
     'opacity': (1 - scrollTop / headlineHeight)
@@ -27,6 +30,13 @@ $(window).scroll(function() {
 $( document ).ready( function() {
   $('#loader').show();
   $('#data-container').hide();
+
+  $('.smooth-scrolling').on('click', function() { // Au clic sur un élément
+			var page = $(this).attr('href'); // Page cible
+			var speed = 750; // Durée de l'animation (en ms)
+			$('html, body').animate( { scrollTop: $(page).offset().top }, speed ); // Go
+			return false;
+		});
 });
 
 $( window ).on( "load", function() {

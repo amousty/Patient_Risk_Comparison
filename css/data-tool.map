@@ -1,0 +1,12 @@
+{
+	"version": 3,
+	"file": "scss/data-tool.css",
+	"sources": [
+		"scss/data-tool.scss"
+	],
+	"sourcesContent": [
+		"#data-container{\r\n\tmargin-top : 15px;\r\n\tmargin-bottom : 15px;\r\n}"
+	],
+	"mappings": ";AAAA,AAAA,eAAe,CAAA;EACd,UAAU,EAAG,IAAK;EAClB,aAAa,EAAG,IAAK;CACrB",
+	"names": []
+}
