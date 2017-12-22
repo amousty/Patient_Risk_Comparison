@@ -166,3 +166,14 @@ function removePatient(){
   // And also clean graph
   destroyChartCanvas();
 }
+
+/*
+  NAME : redrawChart
+  ROLE : redraw chart, used with modal because chart was not refreshed correctly after closing modal
+  PARAM : /
+  RETURN : /
+*/
+function redrawChart(){
+  destroyChartCanvas();
+  generateFullChartFromJSON(TAB_SELECTED_VALUES, JSONObj);
+}
