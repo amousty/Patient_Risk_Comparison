@@ -126,8 +126,8 @@ function getListOfSelectPatient(){
   RETURN : /
 */
 function selectValue(id){
-  if ($('#' + id ).hasClass( "table-success" )){
-    $('#' + id).removeClass( "table-success" );
+  if ($('#' + id ).hasClass( "table-info" )){
+    $('#' + id).removeClass( "table-info" );
     var index = TAB_SELECTED_VALUES.indexOf(id);
     if (index > -1) {
       TAB_SELECTED_VALUES.splice(index, 1);
@@ -135,7 +135,7 @@ function selectValue(id){
   }
   else{
     if(TAB_SELECTED_VALUES.length < 4){
-      $('#' + id).addClass( "table-success" );
+      $('#' + id).addClass( "table-info" );
       TAB_SELECTED_VALUES.push(id);
     }
     else{
@@ -159,7 +159,7 @@ function selectValue(id){
   RETURN : /
 */
 function removePatient(){
-  $("#tbodyData tr").removeClass("table-success");
+  $("#tbodyData tr").removeClass("table-info");
   // But we also need to clean the array
   TAB_SELECTED_VALUES = [];
 

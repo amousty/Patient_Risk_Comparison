@@ -1,17 +1,1 @@
-/* line 1, C:/Users/moust/Documents/GitHub/Patient_Risk_Comparison/css/scss/data-tool.scss */
-#data-container {
-  margin-top: 15px;
-  margin-bottom: 15px;
-}
-
-/* line 6, C:/Users/moust/Documents/GitHub/Patient_Risk_Comparison/css/scss/data-tool.scss */
-#tblData tr:hover {
-  cursor: pointer;
-}
-
-/* line 10, C:/Users/moust/Documents/GitHub/Patient_Risk_Comparison/css/scss/data-tool.scss */
-.sorting_1 {
-  font-familly: bold;
-}
-
-/*# sourceMappingURL=../data-tool.map */
+#data-container{margin-top:15px;margin-bottom:15px}#tblData tr:hover{cursor:pointer}.sorting_1{font-familly:bold}

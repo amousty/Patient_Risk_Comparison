@@ -1,5 +1,5 @@
 /* VARIABLES */
-$blue : #00ABC8;
+$blue : #5bc0de;
 $white : #FFF;
 
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:300,400,700);
@@ -20,7 +20,7 @@ header {
   height: 400px;
   color: $white;
   text-align: center;
-  background: url(../img/graphbanner.png) no-repeat center center;
+  background: url(../img/header_1_.png) no-repeat center center;
   background-size: cover;
   &:after {
     position: absolute;
@@ -92,6 +92,14 @@ nav {
     opacity: 1;
   }
 }
+
+/*
+	TABLE
+*/
+th{
+	color : $blue;
+}
+
 
  /* FOOTER */
 .footer {
