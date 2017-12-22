@@ -10,7 +10,6 @@ $(window).scroll(function() {
         navOffset = $nav.offset().top;
   }
 
-
   $headline.css({
     'opacity': (1 - scrollTop / headlineHeight)
   });
@@ -30,7 +29,6 @@ $(window).scroll(function() {
 $( document ).ready( function() {
   $('#loader').show();
   $('#data-container').hide();
-
 
   $('.smooth-scrolling').on('click', function() {
       // Target page

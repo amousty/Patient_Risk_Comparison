@@ -57,10 +57,3 @@ function ratioToPercent(ratio){
   // If the value is > 100 -> it's not a correct value in parameter
   return ratio * 100 < 100 ? (ratio * 100).toFixed(2) : ratio;
 }
-
-/*
-  NAME :
-  ROLE :
-  PARAM :
-  RETURN :
-*/
