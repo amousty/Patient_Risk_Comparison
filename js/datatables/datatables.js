@@ -6230,7 +6230,7 @@
 	
 				// Remove column sorting
 				$( _pluck( settings.aoData, 'anCells', colIdx ) )
-					.removeClass( sortClass + (i<2 ? i+1 : 3) );
+					//.removeClass( sortClass + (i<2 ? i+1 : 3) );
 			}
 	
 			// Add new column sorting
@@ -6238,7 +6238,7 @@
 				colIdx = sort[i].src;
 	
 				$( _pluck( settings.aoData, 'anCells', colIdx ) )
-					.addClass( sortClass + (i<2 ? i+1 : 3) );
+					//.addClass( sortClass + (i<2 ? i+1 : 3) );
 			}
 		}
 	

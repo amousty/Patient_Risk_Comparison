@@ -62,7 +62,7 @@ header {
 
 /* line 57, C:/Users/moust/Documents/GitHub/Patient_Risk_Comparison/css/scss/default.scss */
 nav {
-  position: fixed;
+  position: relative;
   width: 100%;
   z-index: 10;
 }

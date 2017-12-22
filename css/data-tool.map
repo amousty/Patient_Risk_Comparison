@@ -5,8 +5,8 @@
 		"scss/data-tool.scss"
 	],
 	"sourcesContent": [
-		"#data-container{\r\n\tmargin-top : 15px;\r\n\tmargin-bottom : 15px;\r\n}"
+		"#data-container{\r\n\tmargin-top : 15px;\r\n\tmargin-bottom : 15px;\r\n}\r\n\r\n#tblData tr:hover{\r\n\tcursor: pointer;\r\n}\r\n\r\n.sorting_1{\r\n\tfont-familly : bold;\r\n}"
 	],
-	"mappings": ";AAAA,AAAA,eAAe,CAAA;EACd,UAAU,EAAG,IAAK;EAClB,aAAa,EAAG,IAAK;CACrB",
+	"mappings": ";AAAA,AAAA,eAAe,CAAA;EACd,UAAU,EAAG,IAAK;EAClB,aAAa,EAAG,IAAK;CACrB;;;AAED,AAAW,QAAH,CAAC,EAAE,AAAA,MAAM,CAAA;EAChB,MAAM,EAAE,OAAQ;CAChB;;;AAED,AAAA,UAAU,CAAA;EACT,YAAY,EAAG,IAAK;CACpB",
 	"names": []
 }
