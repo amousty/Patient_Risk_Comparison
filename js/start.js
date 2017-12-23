@@ -24,7 +24,7 @@ $( document ).ready( function() {
 
     // Unslect patient, btn visible from modal
     $('#btn-rmv-patient').click(function(){
-      DT.removePatient();
+      removePatient();
     });
 });
 
