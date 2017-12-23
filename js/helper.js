@@ -1,9 +1,15 @@
-/* https://stackoverflow.com/questions/4060004/calculate-age-given-the-birth-date-in-the-format-yyyymmdd */
+/*
+  DESCRIPTION :
+  Helper.js functions could be called from every page.
+  It contains useful common functions.
+*/
+
 /*
   NAME : getAge
   ROLE : Return an age according to a birthdate
   PARAM : Birthdate
   RETURN : Age
+  SOURCE : https://stackoverflow.com/questions/4060004/calculate-age-given-the-birth-date-in-the-format-yyyymmdd
 */
 function getAge(dateString) {
     var today = new Date();
@@ -14,6 +20,35 @@ function getAge(dateString) {
         age--;
     }
     return age;
+}
+
+/*
+  NAME : formatDate
+  ROLE : format the date in a requested format
+  PARAM :
+    - birthDate
+    - format (yyyymmdd / mmddyyyy + ddmmyyyy)
+    - separator (/, -, ...) OPTIONAL
+  RETURN : date
+*/
+function formatDate(dateString, format, separator) {
+    // Separator is an optional arg
+    separator = (typeof separator === 'undefined') ? '/' : separator;
+    var birthDate = new Date(dateString);
+    var parsedDate = "";
+    switch(format){
+      case 'yyyymmdd' :
+        parsedDate = birthDate.getFullYear() + separator + birthDate.getDate() + separator + birthDate.getDay();
+        break;
+      case 'mmddyyyy' :
+        parsedDate =  birthDate.getDate() + separator + birthDate.getDay() + separator +  birthDate.getFullYear();
+        break;
+      case 'ddmmyyyy' :
+      default:
+        parsedDate = birthDate.getDay() + separator + birthDate.getDate() + separator +birthDate.getFullYear() ;
+        break;
+    }
+    return parsedDate ;
 }
 
 /*

@@ -1,3 +1,7 @@
+/*
+  DESCRIPTION :
+  datatable.js contains ONLY functions related to the datatable.
+*/
 TAB_SELECTED_VALUES = [];
 var JSONObj =  "";
 
@@ -25,7 +29,7 @@ function loadTableData(){
         var values = [
           adm.nom,
           adm.prenom,
-          adm.date_de_naissance,
+          formatDate(adm.date_de_naissance, 'yyyymmdd'),
           adm.genre == 'Male' ? 'M' : 'F',
           getBmi(biom.poids, biom.taille),
           ratioToPercent(biol.HbA1c) + '%',

@@ -1,5 +1,6 @@
 /*
-    DOCUMENT READY & LOAD
+  DESCRIPTION :
+  start.js is used to launch page and call functions from other libs
 */
 $( document ).ready( function() {
   $('#loader').show();

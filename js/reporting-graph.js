@@ -1,4 +1,8 @@
 /*
+  DESCRIPTION :
+  reporting-graph.js contains ONLY functions related to the graph.
+*/
+/*
   Data tree
   ----------
 
