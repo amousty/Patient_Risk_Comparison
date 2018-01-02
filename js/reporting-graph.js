@@ -130,7 +130,7 @@ var CHART = (function() {
       else{
         $('#graph-container').hide( "slow");
         // If empty we destroy the element
-        destroyChartCanvas();
+        CHART.destroyChartCanvas();
       }
     },
 
